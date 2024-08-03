@@ -10,6 +10,9 @@ contract Election{
         uint256 voteCount;
     }
 
+    //Store accounts that have voted
+    mapping(address => bool) public voters;
+
     // Store Candidates
     // Fetch Candidade
     mapping(uint256 => Candidate) public candidates;
@@ -27,5 +30,18 @@ contract Election{
         candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
     }
 
+    function vote(uint256 _candidateId) public {
+        // require that they haven't voted bedore
+        require(!voters[msg.sender]);
+
+        // require a valid candidate
+        require(_candidateId > 0 && _candidateId <= candidatesCount);
+        
+        // record that voter has votes
+        voters[msg.sender] = true;
+
+        // update candidate vote count
+        candidates[_candidateId].voteCount++;
+    }
 
 }

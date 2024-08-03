@@ -36,14 +36,14 @@ App = {
       // Connect provider to interact with contract
       App.contracts.Election.setProvider(App.web3Provider);
 
-      //App.listenForEvents();
+      App.listenForEvents();
 
       return App.render();
     });
   },
 
   // Listen for events emitted from the contract
-  /*listenForEvents: function () {
+  listenForEvents: function () {
     App.contracts.Election.deployed().then(function (instance) {
       // Restart Chrome if you are unable to receive this event
       // This is a known issue with Metamask
@@ -62,7 +62,7 @@ App = {
           App.render();
         });
     });
-  },*/
+  },
 
   render: async function () {
     var electionInstance;
